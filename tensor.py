@@ -228,24 +228,3 @@ class Tensor:
         # backpropagation
         for node in reversed(graph):
             node._backward()
-
-
-if __name__ == "__main__":
-    x = Tensor.randn(shape=(16, 16))
-    f = Tensor.ones(shape=(3, 3))
-    y = x.convolution(f)
-    z = y.tanh()
-
-    # shape [14, 14]
-    print(z.shape)
-
-    w = Tensor.ones((14, 3))
-
-    out = (z.dot(w)).relu()
-
-    # shape [14, 3]
-    print(out.shape)
-
-    out.backward()
-
-    print(x)
